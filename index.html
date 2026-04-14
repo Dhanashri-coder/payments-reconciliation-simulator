@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Payments Reconciliation Simulator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Payments Reconciliation Simulator</h1>
+    <div class="period">Period: March 2026 · Amounts in ₹ · <a href="tests.html" style="color:#60a5fa">Run test suite →</a></div>
+  </header>
+
+  <section class="controls">
+    <button id="btnGenerate">1. Generate Demo Data</button>
+    <button id="btnDuplicates" disabled>2. Detect Duplicates</button>
+    <button id="btnMatch" disabled>3. Match by ID</button>
+    <button id="btnOrphans" disabled>4. Find Orphan Refunds</button>
+    <button id="btnTotals" disabled>5. Calculate Totals</button>
+    <button id="btnIssues" disabled>6. Show Issues Report</button>
+    <span class="spacer"></span>
+    <button id="btnRunAll" class="primary">Run All</button>
+    <button id="btnReset" class="ghost">Reset</button>
+  </section>
+
+  <section class="totals">
+    <div class="card">
+      <div class="label">Platform total</div>
+      <div class="value" id="platformTotal">—</div>
+    </div>
+    <div class="card">
+      <div class="label">Bank total</div>
+      <div class="value" id="bankTotal">—</div>
+    </div>
+    <div class="card diff">
+      <div class="label">Difference</div>
+      <div class="value" id="diffTotal">—</div>
+    </div>
+  </section>
+
+  <section class="issues-panel" id="issuesPanel" hidden>
+    <h2>Issues detected</h2>
+    <div id="issuesList"></div>
+  </section>
+
+  <section class="data-columns">
+    <div class="panel">
+      <h2>
+        Platform Ledger
+        <span class="count" id="platformCount">0</span>
+      </h2>
+      <table class="txn-table">
+        <thead>
+          <tr>
+            <th>ID</th><th>Type</th><th>Date</th>
+            <th class="amount">Amount</th><th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="platformTableBody"></tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <h2>
+        Bank Settlements
+        <span class="count" id="bankCount">0</span>
+      </h2>
+      <table class="txn-table">
+        <thead>
+          <tr>
+            <th>ID</th><th>Type</th><th>Date</th>
+            <th class="amount">Amount</th><th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="bankTableBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="log-panel">
+    <h2>Activity log</h2>
+    <div id="activityLog" class="log"></div>
+  </section>
+
+  <script src="data.js"></script>
+  <script src="reconcile.js"></script>
+  <script src="ui.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

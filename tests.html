@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reconciliation — Test Suite</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .summary {
+      padding: 14px 18px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .summary.pass {
+      background: rgba(74, 222, 128, 0.12);
+      color: var(--ok);
+      border: 1px solid rgba(74, 222, 128, 0.3);
+    }
+    .summary.fail {
+      background: rgba(248, 113, 113, 0.12);
+      color: var(--bad);
+      border: 1px solid rgba(248, 113, 113, 0.3);
+    }
+    .suite {
+      margin-bottom: 14px;
+      padding: 14px 16px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .suite h3 {
+      margin: 0 0 4px 0;
+      font-size: 14px;
+      color: var(--accent);
+    }
+    .suite-summary {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+    .suite ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-family: ui-monospace, "SF Mono", Consolas, monospace;
+      font-size: 12px;
+    }
+    .suite li { padding: 3px 0; }
+    .suite li.pass { color: var(--ok); }
+    .suite li.fail { color: var(--bad); }
+    .suite li.fail pre {
+      margin: 4px 0 8px 0;
+      padding: 8px 12px;
+      background: #0b0e13;
+      border-left: 2px solid var(--bad);
+      font-size: 12px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: var(--text);
+    }
+    .nav {
+      margin-bottom: 16px;
+      font-size: 13px;
+    }
+    .nav a {
+      color: var(--accent);
+      text-decoration: none;
+      margin-right: 16px;
+    }
+    .nav a:hover { text-decoration: underline; }
+    .toolbar { margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Reconciliation — Test Suite</h1>
+    <div class="period">Pure-logic unit tests + integration coverage</div>
+  </header>
+
+  <div class="nav">
+    <a href="index.html">← Back to app</a>
+  </div>
+
+  <div class="toolbar">
+    <button id="btnRerun">Re-run tests</button>
+  </div>
+
+  <div id="testSummary" class="summary">Running…</div>
+  <div id="testResults"></div>
+
+  <script src="data.js"></script>
+  <script src="reconcile.js"></script>
+  <script src="tests/test-runner.js"></script>
+  <script src="tests/reconcile.test.js"></script>
+  <script src="tests/data.test.js"></script>
+  <script>
+    TestRunner.run();
+    document.getElementById('btnRerun').addEventListener('click', () => TestRunner.run());
+  </script>
+</body>
+</html>
